@@ -1010,3 +1010,37 @@ h2 {
   );
   pointer-events: none;
 }
+.term-kv-list {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.term-row {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(39, 39, 42, 0.6);
+}
+
+.term-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.term-key {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.term-val {
+  color: var(--text);
+}
+
+.term-ok {
+  color: var(--accent);
+}
