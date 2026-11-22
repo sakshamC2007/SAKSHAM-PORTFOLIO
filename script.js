@@ -4,7 +4,7 @@
 const projects = [
   {
     id: 'levelpage',
-    title: 'LevelPage (AccessAble AI)',
+    title: 'LevelPage',
     category: 'web',
     categoryLabel: 'Web & Accessibility',
     summary:
