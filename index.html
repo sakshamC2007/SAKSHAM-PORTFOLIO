@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saksham Chauhan — B.Tech CSE (Cyber Security) & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-dots"></div>
 
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <button id="brand-nav-btn" class="brand-btn" title="Scroll to top or jump to Education">
+        <span class="status-dot"></span>
+        <span>saksham<span class="text-muted">.codes</span></span>
+      </button>
+
+      <nav class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button id="cmd-trigger" class="cmd-btn" aria-label="Open Command Palette">
+        <span>Quick Jump</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- Starter / Hero Section -->
+    <section class="hero">
+      <div class="badge">
+        <span class="pulse-dot"></span>
+        <span>First-Year B.Tech CSE (Cyber Security) · Open to Collaborations</span>
+      </div>
+
+      <h1>Building resilient software, computer-vision tools &amp; security workflows.</h1>
+
+      <p class="hero-desc">
+        I'm <strong>Saksham Chauhan</strong>, a first-year Computer Science &amp; Engineering (Cyber Security) undergraduate at K.R. Mangalam University. I build practical software systems with Python, Java, and web technologies while exploring Linux administration, networking, and Red/Blue team concepts.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Explore Projects</a>
+        <button id="copy-email-hero" class="btn btn-secondary" data-email="saksham.chauhan@example.com">
+          <span id="copy-email-text">Copy Email</span>
+        </button>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">// 01. SELECTED WORK</span>
+          <h2>Projects &amp; Builds</h2>
+        </div>
+
+        <div class="filter-group" id="project-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ai">AI &amp; Vision</button>
+          <button class="filter-btn" data-filter="web">Web &amp; Accessibility</button>
+          <button class="filter-btn" data-filter="systems">Security &amp; Hardware</button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="project-grid">
+        <!-- Project cards are rendered dynamically by script.js -->
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Education & Milestones Section -->
+    <section id="education" class="section">
+      <div class="section-header-single">
+        <span class="section-eyebrow">// 02. JOURNEY &amp; CERTIFICATES</span>
+        <h2>Education &amp; Milestones</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot active-dot"></span>
+          <div class="timeline-meta">
+            <span class="timeline-date">Aug 2026 — Present</span>
+            <span class="timeline-tag">Undergraduate</span>
+          </div>
+          <h3>B.Tech in Computer Science &amp; Engineering (Cyber Security)</h3>
+          <p class="timeline-org">K.R. Mangalam University · Sohna, Haryana</p>
+          <p class="timeline-desc">
+            Focused on core computer science, Data Structures &amp; Algorithms in Java, Linux system administration, network protocols, and offensive/defensive cybersecurity fundamentals.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-meta">
+            <span class="timeline-date">Nov 2026</span>
+            <span class="timeline-tag">Hackathon</span>
+          </div>
+          <h3>Aarambhathon 2.0 — Two-Day Live Hackathon</h3>
+          <p class="timeline-org">K.R. Mangalam University</p>
+          <p class="timeline-desc">
+            Collaborated in a four-member engineering squad to architect, build, and pitch a working software prototype under live sprint constraints.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-meta">
+            <span class="timeline-date">Oct 2026</span>
+            <span class="timeline-tag">Certificate</span>
+          </div>
+          <h3>IoT with AI/ML Hands-On Workshop — Autokriti 15.0</h3>
+          <p class="timeline-org">SAE NIT Kurukshetra</p>
+          <p class="timeline-desc">
+            Earned certificate of completion for integrating microcontroller sensor telemetry with Python-based machine learning inference pipelines.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Technical Stack Section -->
+    <section id="skills" class="section">
+      <div class="section-header-single">
+        <span class="section-eyebrow">// 03. CAPABILITIES</span>
+        <h2>Technical Stack</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Languages</h3>
+          <div class="tag-list">
+            <span class="tag">Python 3.12</span>
+            <span class="tag">Java (DSA)</span>
+            <span class="tag">JavaScript (ES6+)</span>
+            <span class="tag">HTML5 &amp; CSS3</span>
+            <span class="tag">C / Arduino</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Frameworks &amp; Libraries</h3>
+          <div class="tag-list">
+            <span class="tag">Flask</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">MediaPipe</span>
+            <span class="tag">NumPy &amp; SymPy</span>
+            <span class="tag">PyMuPDF &amp; Tesseract OCR</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Security &amp; Infrastructure</h3>
+          <div class="tag-list">
+            <span class="tag">Linux Administration</span>
+            <span class="tag">Networking Basics</span>
+            <span class="tag">Red &amp; Blue Team Ops</span>
+            <span class="tag">Git &amp; GitHub</span>
+            <span class="tag">Docker &amp; Render</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <span class="section-eyebrow">// 04. GET IN TOUCH</span>
+      <h2>Let's build something secure and useful.</h2>
+      <p class="contact-desc">
+        Whether you want to discuss a cybersecurity project, collaborate on a hackathon build, or connect over software engineering, feel free to reach out.
+      </p>
+      <div class="hero-actions">
+        <button id="copy-email-footer" class="btn btn-primary" data-email="saksham.chauhan@example.com">
+          <span id="copy-footer-text">Copy Email Address</span>
+        </button>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 Saksham Chauhan. Built with HTML5, CSS3 &amp; Vanilla JS.</span>
+      <span class="mono-muted">Sohna, Haryana · India</span>
+    </div>
+  </footer>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span id="modal-category" class="section-eyebrow"></span>
+          <h3 id="modal-title"></h3>
+        </div>
+        <button id="close-modal" class="icon-btn" aria-label="Close modal">✕</button>
+      </div>
+
+      <!-- Media Showcase (Supports Video or Image) -->
+      <div id="modal-media" class="modal-media"></div>
+
+      <p id="modal-description" class="modal-desc"></p>
+
+      <div class="modal-block">
+        <h4>Key Highlights</h4>
+        <ul id="modal-highlights" class="modal-list"></ul>
+      </div>
+
+      <div class="modal-block">
+        <h4>Tech Stack</h4>
+        <div id="modal-tags" class="tag-list"></div>
+      </div>
+
+      <div class="modal-footer">
+        <a id="modal-repo-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source on GitHub ↗</a>
+        <button id="close-modal-secondary" class="btn btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
+  <div id="cmd-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="cmd-card">
+      <div class="cmd-input-wrap">
+        <span class="mono-muted">&gt;</span>
+        <input id="cmd-input" type="text" placeholder="Type a command or section (e.g. projects, education, email)..." autocomplete="off" />
+        <kbd>ESC</kbd>
+      </div>
+      <div id="cmd-results" class="cmd-results"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
