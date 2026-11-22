@@ -325,3 +325,56 @@ document.addEventListener('keydown', (e) => {
 
 renderProjects('all');
 updateScrollButton();
+// =========================================
+// 8. Interactive Hero Image Pixelator
+// =========================================
+const runBtn = document.getElementById('run-btn');
+const resetBtn = document.getElementById('reset-btn');
+const ideView = document.getElementById('ide-view');
+const outputView = document.getElementById('output-view');
+const rawPhoto = document.getElementById('raw-photo');
+const pixelatedPhoto = document.getElementById('pixelated-photo');
+const outputStatus = document.getElementById('output-status');
+const statusPulse = document.getElementById('status-pulse');
+const glitchOverlay = document.getElementById('glitch-overlay');
+
+function runPixelator() {
+  if (!runBtn || !ideView || !outputView) return;
+  
+  // Transition views
+  ideView.classList.add('hidden');
+  outputView.classList.remove('open', 'hidden');
+  
+  // Reset output view elements
+  rawPhoto.classList.remove('hidden');
+  pixelatedPhoto.classList.add('hidden');
+  glitchOverlay.classList.add('hidden');
+  
+  outputStatus.textContent = 'Allocating memory & loading image...';
+  statusPulse.style.background = '#f59e0b'; // Amber pulse
+  
+  // Phase 1: Show original image loading (Simulation)
+  setTimeout(() => {
+    outputStatus.textContent = 'Applying 16-bit Downsampling & Dithering...';
+    
+    // Phase 2: Render pixelated image (Reveal image_5.png!)
+    setTimeout(() => {
+      rawPhoto.classList.add('hidden');
+      pixelatedPhoto.classList.remove('hidden');
+      glitchOverlay.classList.remove('hidden');
+      outputStatus.textContent = 'SUCCESS: me-pixel.png rendered (35ms)';
+      statusPulse.style.background = '#10b981'; // Green pulse (success)
+    }, 1200);
+    
+  }, 900);
+}
+
+function resetPixelator() {
+  if (!ideView || !outputView) return;
+  ideView.classList.remove('hidden');
+  outputView.classList.add('hidden');
+  statusPulse.style.background = '#ef4444'; // Red pulse
+}
+
+if (runBtn) runBtn.addEventListener('click', runPixelator);
+if (resetBtn) resetBtn.addEventListener('click', resetPixelator);
