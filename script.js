@@ -1,262 +1,327 @@
-// Project Data — Add your real media files inside the assets/ folder
-// Supported mediaType: 'video' (for .mp4/.webm clips), 'image' (for .png/.jpg/.gif), or 'placeholder'
+// =========================================
+// 1. Project Data
+// =========================================
 const projects = [
   {
     id: 'levelpage',
     title: 'LevelPage (AccessAble AI)',
     category: 'web',
     categoryLabel: 'Web & Accessibility',
-    summary: 'Multi-sensory web document reader adapting PDFs and scanned notes with English/Hindi OCR, OpenDyslexic fonts, Bionic Reading, and Text-to-Speech.',
-    description: 'Built to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent learners. Extracts text via PyMuPDF and Tesseract OCR (English & Hindi) and renders customizable reading modes.',
+    summary:
+      'Multi-sensory web document reader adapting PDFs and scanned notes with English/Hindi OCR, OpenDyslexic fonts, Bionic Reading, and Text-to-Speech.',
+    description:
+      'Built to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent readers. Combines server-side PDF extraction and Tesseract OCR with real-time browser typography controls and synchronized Web Speech synthesis.',
+    stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript'],
     highlights: [
-      'Dual-engine extraction combining PyMuPDF for native PDFs and Tesseract OCR for scanned pages.',
-      'Real-time Bionic Reading, OpenDyslexic typography toggle, and Web Speech API narration.',
-      'Lightweight Flask backend containerized with Docker for cloud deployment.'
+      'Dual-language OCR pipeline supporting both English and Hindi scanned documents.',
+      'Real-time Bionic Reading & OpenDyslexic font toggles without page reloads.',
+      'Client-side Web Speech API narration with adjustable reading speed.'
     ],
-    tags: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript'],
-    repoUrl: 'https://github.com',
-    mediaType: 'placeholder', // Change to 'image' or 'video' once you add a file to assets/
+    mediaType: 'placeholder',
     mediaSrc: 'assets/levelpage-demo.png',
-    placeholderText: '[ Add assets/levelpage-demo.png or .mp4 ]'
+    repoUrl: 'https://github.com'
   },
   {
     id: 'gesture-controller',
     title: 'Computer-Vision Gesture Controller',
     category: 'ai',
     categoryLabel: 'AI & Computer Vision',
-    summary: 'Real-time webcam hand-tracking pipeline using OpenCV and MediaPipe to map hand landmarks into low-latency keyboard controls.',
-    description: 'Transforms a standard laptop webcam into a touchless game controller by tracking 21 hand landmarks per frame and translating gesture states into OS-level keystrokes.',
+    summary:
+      'Real-time webcam hand-tracking pipeline using OpenCV and MediaPipe to map hand landmarks into low-latency keyboard controls.',
+    description:
+      'A real-time computer-vision input bridge that tracks 21 hand landmarks per frame over a standard webcam and translates finger distances and gestures into OS-level keyboard events for hands-free game control.',
+    stack: ['Python', 'OpenCV', 'MediaPipe', 'NumPy', 'pynput'],
     highlights: [
-      'Real-time 21-point hand landmark detection using MediaPipe and OpenCV.',
-      'Low-latency keyboard event dispatching via pynput with custom deadzone smoothing.',
-      'Tested live on PC gaming workloads with zero external sensor hardware.'
+      'Sub-30ms frame processing loop using MediaPipe Hands landmark detection.',
+      'Configurable gesture thresholds to prevent accidental key triggers.',
+      'Tested live on PC gaming workflows with visual landmark overlay debugging.'
     ],
-    tags: ['Python', 'OpenCV', 'MediaPipe', 'NumPy', 'pynput'],
-    repoUrl: 'https://github.com',
-    mediaType: 'placeholder', // Change to 'video' and point mediaSrc to 'assets/gesture-demo.mp4'
+    mediaType: 'placeholder',
     mediaSrc: 'assets/gesture-demo.mp4',
-    placeholderText: '[ Add assets/gesture-demo.mp4 ]'
+    repoUrl: 'https://github.com'
   },
   {
-    id: 'iot-telemetry',
+    id: 'esp8266-telemetry',
     title: 'ESP8266 Serial & Telemetry Bridge',
-    category: 'systems',
+    category: 'security',
     categoryLabel: 'Security & Hardware',
-    summary: 'Microcontroller-to-PC serial communication bridge built with ESP8266 and PySerial for real-time hardware monitoring and sensor logging.',
-    description: 'Developed following the SAE NIT Kurukshetra Autokriti 15.0 IoT & AI/ML workshop to stream live sensor packets from ESP8266 boards to Python diagnostic scripts.',
+    summary:
+      'Microcontroller-to-PC serial communication bridge built with ESP8266 and PySerial for real-time hardware monitoring and sensor logging.',
+    description:
+      'Developed during hands-on IoT/AI workshop tracks to stream structured sensor packets from an ESP8266 microcontroller over UART/Serial into a Python processing script for anomaly checks and telemetry logging.',
+    stack: ['ESP8266', 'Arduino C++', 'Python', 'PySerial', 'IoT'],
     highlights: [
-      'Bi-directional UART serial communication between ESP8266 firmware and Python.',
-      'Structured packet parsing for real-time telemetry logging and anomaly checks.',
-      'Modular foundation for hardware security and embedded sensor experiments.'
+      'Structured serial packet framing between ESP8266 firmware and Python host.',
+      'Live telemetry parsing with threshold alerts for abnormal sensor spikes.',
+      'Modular architecture adaptable for local ML inference pipelines.'
     ],
-    tags: ['ESP8266', 'Arduino C++', 'Python', 'PySerial', 'IoT'],
-    repoUrl: 'https://github.com',
     mediaType: 'placeholder',
-    mediaSrc: 'assets/iot-preview.png',
-    placeholderText: '[ Add assets/iot-preview.png ]'
+    mediaSrc: 'assets/esp8266-setup.jpg',
+    repoUrl: 'https://github.com'
   }
 ];
 
-// 1. Smart Navbar Brand Toggle ("saksham.codes")
-const brandBtn = document.getElementById('brand-nav-btn');
-brandBtn.addEventListener('click', () => {
-  const educationSection = document.getElementById('education');
-  // If already at the top/starter heading, scroll directly to Education & Milestones
-  if (window.scrollY <= 80 && educationSection) {
-    educationSection.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    // Otherwise, scroll straight back to the starter heading at the top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-});
-
-// 2. Render Project Cards & Media Previews
+// =========================================
+// 2. Render Project Cards & Category Filter
+// =========================================
 const projectGrid = document.getElementById('project-grid');
+const filterButtons = document.querySelectorAll('.filter-btn');
 
 function buildMediaHTML(project, isModal = false) {
   if (project.mediaType === 'video') {
-    return isModal
-      ? `<video src="${project.mediaSrc}" controls autoplay muted loop playsinline></video>`
-      : `<video src="${project.mediaSrc}" autoplay muted loop playsinline></video>`;
+    return `<video src="${project.mediaSrc}" autoplay loop muted playsinline ${isModal ? 'controls' : ''}></video>`;
   }
   if (project.mediaType === 'image') {
     return `<img src="${project.mediaSrc}" alt="${project.title} preview" loading="lazy" />`;
   }
-  return `<div class="media-placeholder">${project.placeholderText}</div>`;
+  return '';
 }
 
 function renderProjects(filter = 'all') {
+  if (!projectGrid) return;
+
   const filtered = filter === 'all'
     ? projects
-    : projects.filter((p) => p.category === filter);
+    : projects.filter(p => p.category === filter);
 
-  projectGrid.innerHTML = filtered
-    .map(
-      (project) => `
-      <article class="project-card" data-id="${project.id}">
-        <div class="card-media">
-          ${buildMediaHTML(project, false)}
+  projectGrid.innerHTML = filtered.map(project => `
+    <article class="project-card" data-id="${project.id}" tabindex="0" role="button" aria-label="Open details for ${project.title}">
+      ${project.mediaType !== 'placeholder' ? `<div class="card-media">${buildMediaHTML(project, false)}</div>` : ''}
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-category">${project.categoryLabel}</span>
+          <span class="card-arrow">↗</span>
         </div>
-        <div class="card-body">
-          <div class="card-top">
-            <span class="card-cat">${project.categoryLabel}</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <h3>${project.title}</h3>
-          <p>${project.summary}</p>
-          <div class="tag-list">
-            ${project.tags.map((t) => `<span class="tag">${t}</span>`).join('')}
-          </div>
+        <h3>${project.title}</h3>
+        <p>${project.summary}</p>
+        <div class="tag-list">
+          ${project.stack.map(tech => `<span class="tag">${tech}</span>`).join('')}
         </div>
-      </article>
-    `
-    )
-    .join('');
+      </div>
+    </article>
+  `).join('');
 
-  // Attach mouse spotlight tracking and modal click handlers
-  document.querySelectorAll('.project-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    });
-
-    card.addEventListener('click', () => {
-      const project = projects.find((p) => p.id === card.dataset.id);
-      if (project) openProjectModal(project);
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => openProjectModal(card.dataset.id));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProjectModal(card.dataset.id);
+      }
     });
   });
 }
 
-renderProjects();
-
-// 3. Category Filter Buttons
-document.querySelectorAll('.filter-btn').forEach((btn) => {
+filterButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+    filterButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderProjects(btn.dataset.filter);
   });
 });
 
-// 4. Project Detail Modal
+// =========================================
+// 3. Project Detail Modal
+// =========================================
 const projectModal = document.getElementById('project-modal');
-const closeModalBtn = document.getElementById('close-modal');
-const closeModalSecondaryBtn = document.getElementById('close-modal-secondary');
+const modalCloseBtn = document.getElementById('modal-close');
 
-function openProjectModal(project) {
+function openProjectModal(projectId) {
+  const project = projects.find(p => p.id === projectId);
+  if (!project || !projectModal) return;
+
   document.getElementById('modal-category').textContent = project.categoryLabel;
   document.getElementById('modal-title').textContent = project.title;
-  document.getElementById('modal-media').innerHTML = buildMediaHTML(project, true);
   document.getElementById('modal-description').textContent = project.description;
-  document.getElementById('modal-highlights').innerHTML = project.highlights
-    .map((item) => `<li>${item}</li>`)
-    .join('');
-  document.getElementById('modal-tags').innerHTML = project.tags
-    .map((t) => `<span class="tag">${t}</span>`)
-    .join('');
-  document.getElementById('modal-repo-link').href = project.repoUrl;
 
-  projectModal.classList.remove('hidden');
+  const modalMedia = document.getElementById('modal-media');
+  if (project.mediaType === 'placeholder') {
+    modalMedia.style.display = 'none';
+    modalMedia.innerHTML = '';
+  } else {
+    modalMedia.style.display = 'flex';
+    modalMedia.innerHTML = buildMediaHTML(project, true);
+  }
+
+  const highlightsList = document.getElementById('modal-highlights');
+  highlightsList.innerHTML = project.highlights.map(item => `<li>${item}</li>`).join('');
+
+  const stackContainer = document.getElementById('modal-stack');
+  stackContainer.innerHTML = project.stack.map(tech => `<span class="tag">${tech}</span>`).join('');
+
+  const repoLink = document.getElementById('modal-repo-link');
+  repoLink.href = project.repoUrl;
+
+  projectModal.classList.add('open');
+  projectModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeProjectModal() {
-  projectModal.classList.add('hidden');
-  document.getElementById('modal-media').innerHTML = '';
+  if (!projectModal) return;
+  projectModal.classList.remove('open');
+  projectModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
-closeModalBtn.addEventListener('click', closeProjectModal);
-closeModalSecondaryBtn.addEventListener('click', closeProjectModal);
-projectModal.addEventListener('click', (e) => {
-  if (e.target === projectModal) closeProjectModal();
-});
-
-// 5. Copy Email Buttons
-function setupCopyButton(btnId, labelId, defaultLabel) {
-  const btn = document.getElementById(btnId);
-  const label = document.getElementById(labelId);
-  if (!btn || !label) return;
-
-  btn.addEventListener('click', async () => {
-    const email = btn.dataset.email;
-    try {
-      await navigator.clipboard.writeText(email);
-      label.textContent = 'Copied to Clipboard!';
-      setTimeout(() => {
-        label.textContent = defaultLabel;
-      }, 2000);
-    } catch {
-      label.textContent = email;
-    }
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener('click', closeProjectModal);
+}
+if (projectModal) {
+  projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal) closeProjectModal();
   });
 }
 
-setupCopyButton('copy-email-hero', 'copy-email-text', 'Copy Email');
-setupCopyButton('copy-email-footer', 'copy-footer-text', 'Copy Email Address');
+// =========================================
+// 4. Copy Email with Toast Feedback
+// =========================================
+const toast = document.getElementById('toast');
+let toastTimeout;
 
-// 6. Command Palette (Ctrl+K / Cmd+K)
-const cmdModal = document.getElementById('cmd-modal');
+function showToast(message) {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2600);
+}
+
+function copyEmail(email) {
+  navigator.clipboard.writeText(email).then(() => {
+    showToast(`Copied ${email} to clipboard`);
+  }).catch(() => {
+    showToast(`Email: ${email}`);
+  });
+}
+
+['copy-email-hero', 'copy-email-footer'].forEach(id => {
+  const btn = document.getElementById(id);
+  if (btn) {
+    btn.addEventListener('click', () => copyEmail(btn.dataset.email));
+  }
+});
+
+// =========================================
+// 5. Command Palette (Ctrl+K / Cmd+K)
+// =========================================
+const cmdPalette = document.getElementById('command-palette');
 const cmdTrigger = document.getElementById('cmd-trigger');
 const cmdInput = document.getElementById('cmd-input');
-const cmdResults = document.getElementById('cmd-results');
+const cmdList = document.getElementById('cmd-list');
 
 const commands = [
-  { label: 'Go to Top / Starter Heading', hint: 'Section', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
-  { label: 'Go to Projects & Builds', hint: 'Section', action: () => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'Go to Education & Milestones', hint: 'Section', action: () => document.getElementById('education').scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'Go to Technical Stack', hint: 'Section', action: () => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'Go to Contact', hint: 'Section', action: () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'Copy Email Address', hint: 'Action', action: () => document.getElementById('copy-email-hero').click() }
+  { label: 'Go to Projects & Builds', shortcut: 'SEC 01', action: () => scrollToSection('#projects') },
+  { label: 'Go to Education & Milestones', shortcut: 'SEC 02', action: () => scrollToSection('#education') },
+  { label: 'Go to Technical Stack', shortcut: 'SEC 03', action: () => scrollToSection('#skills') },
+  { label: 'Go to Contact', shortcut: 'SEC 04', action: () => scrollToSection('#contact') },
+  { label: 'Copy Email Address', shortcut: 'EMAIL', action: () => copyEmail('sakshamc2707@gmail.com') },
+  { label: 'Open GitHub Profile', shortcut: 'LINK', action: () => window.open('https://github.com', '_blank') },
+  { label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank') }
 ];
 
+function scrollToSection(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
 function renderCommands(query = '') {
-  const q = query.toLowerCase().trim();
-  const matches = commands.filter((c) => c.label.toLowerCase().includes(q));
+  if (!cmdList) return;
+  const filtered = commands.filter(cmd =>
+    cmd.label.toLowerCase().includes(query.toLowerCase())
+  );
 
-  cmdResults.innerHTML = matches
-    .map(
-      (cmd, idx) => `
-      <button class="cmd-item" data-index="${idx}">
-        <span>${cmd.label}</span>
-        <span class="mono-muted">${cmd.hint}</span>
-      </button>
-    `
-    )
-    .join('');
+  cmdList.innerHTML = filtered.map((cmd, idx) => `
+    <li class="cmd-item" data-index="${idx}">
+      <span>${cmd.label}</span>
+      <span class="cmd-shortcut">${cmd.shortcut}</span>
+    </li>
+  `).join('');
 
-  document.querySelectorAll('.cmd-item').forEach((item, idx) => {
+  cmdList.querySelectorAll('.cmd-item').forEach((item, idx) => {
     item.addEventListener('click', () => {
-      matches[idx].action();
-      closeCmdModal();
+      filtered[idx].action();
+      closeCommandPalette();
     });
   });
 }
 
-function openCmdModal() {
-  cmdModal.classList.remove('hidden');
+function openCommandPalette() {
+  if (!cmdPalette || !cmdInput) return;
+  cmdPalette.classList.add('open');
+  cmdPalette.setAttribute('aria-hidden', 'false');
   cmdInput.value = '';
   renderCommands();
-  cmdInput.focus();
+  setTimeout(() => cmdInput.focus(), 50);
 }
 
-function closeCmdModal() {
-  cmdModal.classList.add('hidden');
+function closeCommandPalette() {
+  if (!cmdPalette) return;
+  cmdPalette.classList.remove('open');
+  cmdPalette.setAttribute('aria-hidden', 'true');
 }
 
-cmdTrigger.addEventListener('click', openCmdModal);
-cmdInput.addEventListener('input', (e) => renderCommands(e.target.value));
-cmdModal.addEventListener('click', (e) => {
-  if (e.target === cmdModal) closeCmdModal();
-});
+if (cmdTrigger) cmdTrigger.addEventListener('click', openCommandPalette);
+if (cmdInput) cmdInput.addEventListener('input', (e) => renderCommands(e.target.value));
+if (cmdPalette) {
+  cmdPalette.addEventListener('click', (e) => {
+    if (e.target === cmdPalette) closeCommandPalette();
+  });
+}
 
+// =========================================
+// 6. Smart Scroll Toggle Button
+// =========================================
+const scrollToggleBtn = document.getElementById('scroll-toggle');
+const scrollArrow = document.getElementById('scroll-arrow');
+
+function updateScrollButton() {
+  if (!scrollToggleBtn || !scrollArrow) return;
+  const scrolled = window.scrollY;
+  const halfPage = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+
+  if (scrolled > halfPage) {
+    scrollArrow.textContent = '↑';
+    scrollToggleBtn.setAttribute('aria-label', 'Scroll to top');
+    scrollToggleBtn.dataset.direction = 'up';
+  } else {
+    scrollArrow.textContent = '↓';
+    scrollToggleBtn.setAttribute('aria-label', 'Scroll to bottom');
+    scrollToggleBtn.dataset.direction = 'down';
+  }
+}
+
+if (scrollToggleBtn) {
+  scrollToggleBtn.addEventListener('click', () => {
+    if (scrollToggleBtn.dataset.direction === 'up') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    }
+  });
+}
+
+window.addEventListener('scroll', updateScrollButton, { passive: true });
+
+// =========================================
+// 7. Global Keyboard Shortcuts & Init
+// =========================================
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
     e.preventDefault();
-    cmdModal.classList.contains('hidden') ? openCmdModal() : closeCmdModal();
+    if (cmdPalette && cmdPalette.classList.contains('open')) {
+      closeCommandPalette();
+    } else {
+      openCommandPalette();
+    }
   }
   if (e.key === 'Escape') {
     closeProjectModal();
-    closeCmdModal();
+    closeCommandPalette();
   }
 });
-{ label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank') },
+
+renderProjects('all');
+updateScrollButton();
