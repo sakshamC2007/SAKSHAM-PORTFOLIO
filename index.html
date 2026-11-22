@@ -37,25 +37,52 @@
   <main id="top" class="container">
     <!-- Starter / Hero Section -->
     <section class="hero">
-      <div class="badge">
-        <span class="pulse-dot"></span>
-        <span>First-Year B.Tech CSE (Cyber Security) </span>
+     
+      <div class="hero-grid">
+        <div class="hero-main">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span>First-Year B.Tech CSE (Cyber Security)</span>
+          </div>
+          <h1>Building resilient software, computer-vision tools &amp; security workflows.</h1>
+          <p class="hero-desc">
+            I'm <strong>Saksham Chauhan</strong>, a first-year Computer Science &amp; Engineering (Cyber Security) undergraduate at K.R. Mangalam University. Outside coursework and hackathons, I enjoy breaking down how operating systems work, experimenting with microcontrollers, and building tools that solve everyday friction.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <button class="btn btn-secondary" id="copy-email-hero" data-email="sakshamc2707@gmail.com">
+              Copy Email
+            </button>
+            <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-terminal" aria-label="Developer profile summary">
+          <div class="terminal-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="terminal-title">saksham@kali: ~/whoami</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="cmd">$ cat profile.json</span></p>
+            <pre>{
+  "name": "Saksham Chauhan",
+  "role": "CSE (Cyber Security) '29",
+  "base": "Sohna, Haryana, IN",
+  "currently_exploring": [
+    "Linux Internals & Bash",
+    "Network Packet Analysis",
+    "Computer Vision & IoT"
+  ],
+  "off_screen": "Hardware tinkering & CTFs"
+}</pre>
+          </div>
+        </aside>
       </div>
-
-      <h1>Building resilient software, computer-vision tools &amp; security workflows.</h1>
-
-      <p class="hero-desc">
-        I'm <strong>Saksham Chauhan</strong>, a first-year Computer Science &amp; Engineering (Cyber Security) undergraduate at K.R. Mangalam University. I build practical software systems with Python and web technologies while exploring Linux administration, networking, and Red/Blue team concepts.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Explore Projects</a>
-        <button id="copy-email-hero" class="btn btn-secondary" data-email="saksham.chauhan@example.com">
-          <span id="copy-email-text">saksham.c2707@gmail.com</span>
-        </button>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub ↗</a>
-      </div>
-    </section>
+     </section>
 
     <hr class="divider" />
 
@@ -89,46 +116,34 @@
         <h2>Education &amp; Milestones</h2>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="timeline-dot active-dot"></span>
-          <div class="timeline-meta">
-            <span class="timeline-date">Aug 2026 — Present</span>
-            <span class="timeline-tag">Undergraduate</span>
-          </div>
-          <h3>B.Tech in Computer Science &amp; Engineering (Cyber Security)</h3>
-          <p class="timeline-org">K.R. Mangalam University · Sohna, Haryana</p>
-          <p class="timeline-desc">
-            Focused on core computer science, Data Structures &amp; Algorithms in Java, Linux system administration, network protocols, and offensive/defensive cybersecurity fundamentals.
-          </p>
+      <div class="edu-split">
+        <div class="timeline">
+          <!-- Keep your existing 3 .timeline-item blocks right here -->
         </div>
 
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="timeline-meta">
-            <span class="timeline-date">Nov 2026</span>
-            <span class="timeline-tag">Hackathon</span>
+        <aside class="focus-panel">
+          <div class="focus-header">
+            <span class="pulse-dot"></span>
+            <span>ACTIVE LEARNING TRACK</span>
           </div>
-          <h3>Aarambhathon 2.0 — Two-Day Live Hackathon</h3>
-          <p class="timeline-org">K.R. Mangalam University</p>
-          <p class="timeline-desc">
-            Collaborated in a four-member engineering squad to architect, build, and pitch a working software prototype under live sprint constraints.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="timeline-meta">
-            <span class="timeline-date">Oct 2026</span>
-            <span class="timeline-tag">Certificate</span>
-          </div>
-          <h3>IoT with AI/ML Hands-On Workshop — Autokriti 15.0</h3>
-          <p class="timeline-org">SAE NIT Kurukshetra</p>
-          <p class="timeline-desc">
-            Earned certificate of completion for integrating microcontroller sensor telemetry with Python-based machine learning inference pipelines.
-          </p>
-        </div>
+          <h3>What I'm Focusing On Right Now</h3>
+          <ul class="focus-list">
+            <li>
+              <strong>System &amp; Network Foundations</strong>
+              <span>Practicing Linux CLI workflows, permissions, and TCP/IP fundamentals.</span>
+            </li>
+            <li>
+              <strong>Data Structures in Java</strong>
+              <span>Solving algorithmic problems to strengthen core problem-solving speed.</span>
+            </li>
+            <li>
+              <strong>Hardware + Python Prototyping</strong>
+              <span>Connecting ESP8266 sensors with local Python serial pipelines.</span>
+            </li>
+          </ul>
+        </aside>
       </div>
+    
     </section>
 
     <hr class="divider" />
