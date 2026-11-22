@@ -904,3 +904,109 @@ h2 {
     display: none;
   }
 }
+.terminal-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.run-badge,
+.reset-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.run-badge:hover {
+  background: var(--accent);
+  color: #0c0c0e;
+}
+
+.reset-badge {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.reset-badge:hover {
+  background: var(--border-hover);
+  color: var(--text);
+}
+
+#ide-view {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+#ide-view .comment { color: var(--text-muted); }
+#ide-view .keyword { color: #f43f5e; }
+#ide-view .variable { color: #60a5fa; }
+#ide-view .string { color: #10b981; }
+#ide-view .function { color: #fbbf24; }
+#ide-view .parameter { color: #f43f5e; }
+#ide-view .property { color: #a78bfa; }
+#ide-view .indent { padding-left: 1.25rem; }
+#ide-view .cmd-line { margin-top: 1rem; color: #60a5fa; }
+
+.hidden { display: none !important; }
+
+/* Visual Output Screen */
+#output-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.canvas-container {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #111114;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 4/5;
+  max-height: 300px;
+}
+
+.canvas-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#pixelated-photo {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Simulated Scanline / Matrix Glitch Effect */
+#glitch-overlay {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0.1) 1px,
+    rgba(16,185,129,0.03) 2px,
+    rgba(0,0,0,0) 3px
+  );
+  pointer-events: none;
+}
