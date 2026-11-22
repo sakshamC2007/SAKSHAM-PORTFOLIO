@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saksham Chauhan — B.Tech CSE (Cyber Security) & Developer</title>
+  <title>Saksham Chauhan — B.Tech CSE (Cyber Security) &amp; Developer</title>
+  <meta name="description" content="Saksham Chauhan — First-Year B.Tech CSE (Cyber Security) undergraduate building resilient software, computer-vision tools, and security workflows." />
+  <meta property="og:title" content="Saksham Chauhan — B.Tech CSE (Cyber Security) & Developer" />
+  <meta property="og:description" content="Projects in Python, Computer Vision, Web Accessibility, and Embedded Systems." />
+  <meta property="og:url" content="https://saksham-portfolio-v0nu.onrender.com" />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -20,7 +25,7 @@
         <span>saksham<span class="text-muted">.codes</span></span>
       </button>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Primary sections">
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
         <a href="#skills">Stack</a>
@@ -53,10 +58,10 @@
             <button class="btn btn-secondary" id="copy-email-hero" data-email="sakshamc2707@gmail.com">
               Copy Email
             </button>
-            <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
               GitHub ↗
             </a>
-            <a href="https://www.linkedin.com/in/saksham-chauhan-564a623b9" target="_blank" rel="noopener" class="btn btn-ghost">
+            <a href="https://www.linkedin.com/in/saksham-chauhan-564a623b9" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
               LinkedIn ↗
             </a>
           </div>
@@ -101,20 +106,6 @@
         </aside>
       </div>
     </section>
-            <!-- Visual canvas/output view (Hidden until clicked) -->
-            <div id="output-view" class="hidden">
-              <div class="output-header">
-                <span class="pulse-dot active" id="status-pulse"></span>
-                <span id="output-status">Compiling...</span>
-              </div>
-              <div class="canvas-container">
-                <img id="raw-photo" src="assets/me.jpg" alt="Source" class="hidden" />
-                <img id="pixelated-photo" src="assets/me-pixel.png" alt="Generated Pixel Art" class="hidden" />
-                <div id="glitch-overlay" class="hidden"></div>
-              </div>
-            </div>
-          </div>
-        </aside>
 
     <!-- Featured Projects Section -->
     <section id="projects" class="section">
@@ -137,8 +128,7 @@
       </div>
     </section>
 
-    <hr class="divider" /> 
-
+    <hr class="divider" />
 
     <!-- Education & Milestones Section -->
     <section id="education" class="section">
@@ -180,7 +170,7 @@
           </div>
         </div>
 
-       <aside class="focus-panel">
+        <aside class="focus-panel">
           <div class="focus-header">
             <span class="pulse-dot"></span>
             <span>ACTIVE LEARNING TRACK</span>
@@ -203,8 +193,10 @@
         </aside>
       </div>
     </section>
-    
-   <!-- Technical Stack Section -->
+
+    <hr class="divider" />
+
+    <!-- Technical Stack Section -->
     <section id="skills" class="section">
       <div class="section-header-single">
         <span class="section-eyebrow">03. CAPABILITIES</span>
@@ -259,7 +251,6 @@
       </div>
     </section>
 
-
     <hr class="divider" />
 
     <!-- Contact Section -->
@@ -269,12 +260,12 @@
       <p class="contact-desc">
         Whether you want to discuss a cybersecurity project, collaborate on a hackathon build, or connect over software engineering, feel free to reach out.
       </p>
-      <div class="hero-actions">
-        <button id="copy-email-footer" class="btn btn-primary" data-email="saksham.c2707@gmail.com">
+      <div class="hero-actions contact-actions">
+        <button id="copy-email-footer" class="btn btn-primary" data-email="sakshamc2707@gmail.com">
           <span id="copy-footer-text">Copy Email Address</span>
         </button>
         <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile ↗</a>
-        <a href="https://www.linkedin.com/in/saksham-chauhan-564a623b9" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/saksham-chauhan-564a623b9" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
       </div>
     </section>
   </main>
@@ -297,7 +288,6 @@
         <button id="close-modal" class="icon-btn" aria-label="Close modal">✕</button>
       </div>
 
-      <!-- Media Showcase (Supports Video or Image) -->
       <div id="modal-media" class="modal-media"></div>
 
       <p id="modal-description" class="modal-desc"></p>
