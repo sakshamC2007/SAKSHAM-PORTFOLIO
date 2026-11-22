@@ -62,32 +62,48 @@
           </div>
         </div>
 
-        <aside class="hero-terminal" aria-label="Developer profile summary">
+ <aside class="hero-terminal" aria-label="Interactive Developer Sandbox">
           <div class="terminal-bar">
             <span class="dot dot-red"></span>
             <span class="dot dot-yellow"></span>
             <span class="dot dot-green"></span>
-            <span class="terminal-title">saksham@kali: ~/whoami</span>
+            <span class="terminal-title">saksham@kali: ~/sandbox/pixelator</span>
+            <div class="terminal-actions">
+              <button id="run-btn" class="run-badge">▶ RUN</button>
+              <button id="reset-btn" class="reset-badge">↺ RESET</button>
+            </div>
           </div>
-          <div class="terminal-body">
-            <p><span class="cmd">$ cat profile.json</span></p>
-            <pre>{
-  "name": "Saksham Chauhan",
-  "role": "CSE (Cyber Security) '29",
-  "base": "Sohna, Haryana, IN",
-  "currently_exploring": [
-    "Linux Internals & Bash",
-    "Network Packet Analysis",
-    "Computer Vision & IoT"
-  ],
-  "off_screen": "Hardware tinkering & CTFs"
-}</pre>
+          <div class="terminal-body" id="sandbox-body">
+            <!-- IDE View (Code before click) -->
+            <div id="ide-view">
+              <p class="comment">// Target: Convert personal image to 16-bit pixel art</p>
+              <p><span class="keyword">const</span> <span class="variable">source</span> = <span class="string">'assets/me.jpg'</span>;</p>
+              <p><span class="keyword">const</span> <span class="variable">mode</span> = <span class="string">'retro-16bit'</span>;</p>
+              <br>
+              <p><span class="keyword">function</span> <span class="function">generatePixelArt</span>(<span class="parameter">img</span>, <span class="parameter">pixelSize</span>) {</p>
+              <p class="indent"><span class="keyword">const</span> <span class="variable">canvas</span> = <span class="keyword">new</span> <span class="variable">ImagePixelator</span>();</p>
+              <p class="indent"><span class="variable">canvas</span>.<span class="property">load</span>(img);</p>
+              <p class="indent"><span class="variable">canvas</span>.<span class="property">applyDither</span>({ resolution: pixelSize });</p>
+              <p class="indent"><span class="keyword">return</span> <span class="variable">canvas</span>.<span class="property">render</span>();</p>
+              <p>}</p>
+              <br>
+              <p class="cmd-line"><span class="prompt">$</span> generatePixelArt(source, 16);</p>
+            </div>
+
+            <!-- Visual canvas/output view (Hidden until clicked) -->
+            <div id="output-view" class="hidden">
+              <div class="output-header">
+                <span class="pulse-dot active" id="status-pulse"></span>
+                <span id="output-status">Compiling...</span>
+              </div>
+              <div class="canvas-container">
+                <img id="raw-photo" src="assets/me.jpg" alt="Source" class="hidden" />
+                <img id="pixelated-photo" src="assets/me-pixel.png" alt="Generated Pixel Art" class="hidden" />
+                <div id="glitch-overlay" class="hidden"></div>
+              </div>
+            </div>
           </div>
         </aside>
-      </div>
-     </section>
-
-    <hr class="divider" />
 
     <!-- Featured Projects Section -->
     <section id="projects" class="section">
