@@ -61,35 +61,45 @@
             </a>
           </div>
         </div>
-
- <aside class="hero-terminal" aria-label="Interactive Developer Sandbox">
+<aside class="hero-terminal" aria-label="Developer system profile">
           <div class="terminal-bar">
             <span class="dot dot-red"></span>
             <span class="dot dot-yellow"></span>
             <span class="dot dot-green"></span>
-            <span class="terminal-title">saksham@kali: ~/sandbox/pixelator</span>
-            <div class="terminal-actions">
-              <button id="run-btn" class="run-badge">▶ RUN</button>
-              <button id="reset-btn" class="reset-badge">↺ RESET</button>
+            <span class="terminal-title">saksham@krmu: ~/status</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="cmd">$ whoami --verbose</span></p>
+            <div class="term-kv-list">
+              <div class="term-row">
+                <span class="term-key">USER</span>
+                <span class="term-val">Saksham Chauhan</span>
+              </div>
+              <div class="term-row">
+                <span class="term-key">TRACK</span>
+                <span class="term-val">B.Tech CSE (Cyber Security) · '29</span>
+              </div>
+              <div class="term-row">
+                <span class="term-key">BASE</span>
+                <span class="term-val">Sohna, Haryana, IN</span>
+              </div>
+              <div class="term-row">
+                <span class="term-key">ACTIVE_BUILD</span>
+                <span class="term-val">LevelPage (Multi-Sensory OCR Reader)</span>
+              </div>
+              <div class="term-row">
+                <span class="term-key">DRILLS</span>
+                <span class="term-val">Java DSA · Linux CLI · TCP/IP</span>
+              </div>
+              <div class="term-row">
+                <span class="term-key">STATUS</span>
+                <span class="term-val term-ok">Open to Hackathons &amp; Internships</span>
+              </div>
             </div>
           </div>
-          <div class="terminal-body" id="sandbox-body">
-            <!-- IDE View (Code before click) -->
-            <div id="ide-view">
-              <p class="comment">// Target: Convert personal image to 16-bit pixel art</p>
-              <p><span class="keyword">const</span> <span class="variable">source</span> = <span class="string">'assets/me.jpg'</span>;</p>
-              <p><span class="keyword">const</span> <span class="variable">mode</span> = <span class="string">'retro-16bit'</span>;</p>
-              <br>
-              <p><span class="keyword">function</span> <span class="function">generatePixelArt</span>(<span class="parameter">img</span>, <span class="parameter">pixelSize</span>) {</p>
-              <p class="indent"><span class="keyword">const</span> <span class="variable">canvas</span> = <span class="keyword">new</span> <span class="variable">ImagePixelator</span>();</p>
-              <p class="indent"><span class="variable">canvas</span>.<span class="property">load</span>(img);</p>
-              <p class="indent"><span class="variable">canvas</span>.<span class="property">applyDither</span>({ resolution: pixelSize });</p>
-              <p class="indent"><span class="keyword">return</span> <span class="variable">canvas</span>.<span class="property">render</span>();</p>
-              <p>}</p>
-              <br>
-              <p class="cmd-line"><span class="prompt">$</span> generatePixelArt(source, 16);</p>
-            </div>
+        </aside>
 
+        
             <!-- Visual canvas/output view (Hidden until clicked) -->
             <div id="output-view" class="hidden">
               <div class="output-header">
