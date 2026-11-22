@@ -43,7 +43,7 @@ const projects = [
   {
     id: 'esp8266-telemetry',
     title: 'ESP8266 Serial & Telemetry Bridge',
-    category: 'security',
+    category: 'systems',
     categoryLabel: 'Security & Hardware',
     summary:
       'Microcontroller-to-PC serial communication bridge built with ESP8266 and PySerial for real-time hardware monitoring and sensor logging.',
@@ -103,6 +103,11 @@ function renderProjects(filter = 'all') {
 
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => openProjectModal(card.dataset.id));
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -124,7 +129,8 @@ filterButtons.forEach(btn => {
 // 3. Project Detail Modal
 // =========================================
 const projectModal = document.getElementById('project-modal');
-const modalCloseBtn = document.getElementById('modal-close');
+const closeModalBtn = document.getElementById('close-modal');
+const closeModalSecondaryBtn = document.getElementById('close-modal-secondary');
 
 function openProjectModal(projectId) {
   const project = projects.find(p => p.id === projectId);
@@ -146,27 +152,24 @@ function openProjectModal(projectId) {
   const highlightsList = document.getElementById('modal-highlights');
   highlightsList.innerHTML = project.highlights.map(item => `<li>${item}</li>`).join('');
 
-  const stackContainer = document.getElementById('modal-stack');
-  stackContainer.innerHTML = project.stack.map(tech => `<span class="tag">${tech}</span>`).join('');
+  const tagsContainer = document.getElementById('modal-tags');
+  tagsContainer.innerHTML = project.stack.map(tech => `<span class="tag">${tech}</span>`).join('');
 
   const repoLink = document.getElementById('modal-repo-link');
   repoLink.href = project.repoUrl;
 
-  projectModal.classList.add('open');
-  projectModal.setAttribute('aria-hidden', 'false');
+  projectModal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
 function closeProjectModal() {
   if (!projectModal) return;
-  projectModal.classList.remove('open');
-  projectModal.setAttribute('aria-hidden', 'true');
+  projectModal.classList.add('hidden');
   document.body.style.overflow = '';
 }
 
-if (modalCloseBtn) {
-  modalCloseBtn.addEventListener('click', closeProjectModal);
-}
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeProjectModal);
+if (closeModalSecondaryBtn) closeModalSecondaryBtn.addEventListener('click', closeProjectModal);
 if (projectModal) {
   projectModal.addEventListener('click', (e) => {
     if (e.target === projectModal) closeProjectModal();
@@ -174,52 +177,44 @@ if (projectModal) {
 }
 
 // =========================================
-// 4. Copy Email with Toast Feedback
+// 4. Copy Email with Button Feedback
 // =========================================
-const toast = document.getElementById('toast');
-let toastTimeout;
+function copyEmail(email, triggerBtn = null) {
+  navigator.clipboard.writeText(email).catch(() => {});
 
-function showToast(message) {
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2600);
-}
-
-function copyEmail(email) {
-  navigator.clipboard.writeText(email).then(() => {
-    showToast(`Copied ${email} to clipboard`);
-  }).catch(() => {
-    showToast(`Email: ${email}`);
-  });
+  if (triggerBtn) {
+    const labelTarget = triggerBtn.querySelector('span') || triggerBtn;
+    const originalText = labelTarget.textContent;
+    labelTarget.textContent = 'Copied ✓';
+    setTimeout(() => {
+      labelTarget.textContent = originalText;
+    }, 2000);
+  }
 }
 
 ['copy-email-hero', 'copy-email-footer'].forEach(id => {
   const btn = document.getElementById(id);
   if (btn) {
-    btn.addEventListener('click', () => copyEmail(btn.dataset.email));
+    btn.addEventListener('click', () => copyEmail(btn.dataset.email, btn));
   }
 });
 
 // =========================================
 // 5. Command Palette (Ctrl+K / Cmd+K)
 // =========================================
-const cmdPalette = document.getElementById('command-palette');
+const cmdModal = document.getElementById('cmd-modal');
 const cmdTrigger = document.getElementById('cmd-trigger');
 const cmdInput = document.getElementById('cmd-input');
-const cmdList = document.getElementById('cmd-list');
+const cmdResults = document.getElementById('cmd-results');
 
 const commands = [
   { label: 'Go to Projects & Builds', shortcut: 'SEC 01', action: () => scrollToSection('#projects') },
   { label: 'Go to Education & Milestones', shortcut: 'SEC 02', action: () => scrollToSection('#education') },
   { label: 'Go to Technical Stack', shortcut: 'SEC 03', action: () => scrollToSection('#skills') },
   { label: 'Go to Contact', shortcut: 'SEC 04', action: () => scrollToSection('#contact') },
-  { label: 'Copy Email Address', shortcut: 'EMAIL', action: () => copyEmail('sakshamc2707@gmail.com') },
-  { label: 'Open GitHub Profile', shortcut: 'LINK', action: () => window.open('https://github.com', '_blank') },
-  { label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank') }
+  { label: 'Copy Email Address', shortcut: 'EMAIL', action: () => copyEmail('sakshamc2707@gmail.com', document.getElementById('copy-email-hero')) },
+  { label: 'Open GitHub Profile', shortcut: 'LINK', action: () => window.open('https://github.com', '_blank', 'noopener') },
+  { label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank', 'noopener') }
 ];
 
 function scrollToSection(selector) {
@@ -228,19 +223,19 @@ function scrollToSection(selector) {
 }
 
 function renderCommands(query = '') {
-  if (!cmdList) return;
+  if (!cmdResults) return;
   const filtered = commands.filter(cmd =>
     cmd.label.toLowerCase().includes(query.toLowerCase())
   );
 
-  cmdList.innerHTML = filtered.map((cmd, idx) => `
-    <li class="cmd-item" data-index="${idx}">
+  cmdResults.innerHTML = filtered.map((cmd, idx) => `
+    <button type="button" class="cmd-item" data-index="${idx}">
       <span>${cmd.label}</span>
-      <span class="cmd-shortcut">${cmd.shortcut}</span>
-    </li>
+      <span class="mono-muted">${cmd.shortcut}</span>
+    </button>
   `).join('');
 
-  cmdList.querySelectorAll('.cmd-item').forEach((item, idx) => {
+  cmdResults.querySelectorAll('.cmd-item').forEach((item, idx) => {
     item.addEventListener('click', () => {
       filtered[idx].action();
       closeCommandPalette();
@@ -249,69 +244,42 @@ function renderCommands(query = '') {
 }
 
 function openCommandPalette() {
-  if (!cmdPalette || !cmdInput) return;
-  cmdPalette.classList.add('open');
-  cmdPalette.setAttribute('aria-hidden', 'false');
+  if (!cmdModal || !cmdInput) return;
+  cmdModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
   cmdInput.value = '';
   renderCommands();
-  setTimeout(() => cmdInput.focus(), 50);
+  setTimeout(() => cmdInput.focus(), 40);
 }
 
 function closeCommandPalette() {
-  if (!cmdPalette) return;
-  cmdPalette.classList.remove('open');
-  cmdPalette.setAttribute('aria-hidden', 'true');
+  if (!cmdModal) return;
+  cmdModal.classList.add('hidden');
+  document.body.style.overflow = '';
 }
 
 if (cmdTrigger) cmdTrigger.addEventListener('click', openCommandPalette);
 if (cmdInput) cmdInput.addEventListener('input', (e) => renderCommands(e.target.value));
-if (cmdPalette) {
-  cmdPalette.addEventListener('click', (e) => {
-    if (e.target === cmdPalette) closeCommandPalette();
+if (cmdModal) {
+  cmdModal.addEventListener('click', (e) => {
+    if (e.target === cmdModal) closeCommandPalette();
   });
 }
 
 // =========================================
-// 6. Smart Scroll Toggle Button
+// 6. Brand Button & Global Keyboard Shortcuts
 // =========================================
-const scrollToggleBtn = document.getElementById('scroll-toggle');
-const scrollArrow = document.getElementById('scroll-arrow');
-
-function updateScrollButton() {
-  if (!scrollToggleBtn || !scrollArrow) return;
-  const scrolled = window.scrollY;
-  const halfPage = (document.documentElement.scrollHeight - window.innerHeight) / 2;
-
-  if (scrolled > halfPage) {
-    scrollArrow.textContent = '↑';
-    scrollToggleBtn.setAttribute('aria-label', 'Scroll to top');
-    scrollToggleBtn.dataset.direction = 'up';
-  } else {
-    scrollArrow.textContent = '↓';
-    scrollToggleBtn.setAttribute('aria-label', 'Scroll to bottom');
-    scrollToggleBtn.dataset.direction = 'down';
-  }
-}
-
-if (scrollToggleBtn) {
-  scrollToggleBtn.addEventListener('click', () => {
-    if (scrollToggleBtn.dataset.direction === 'up') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    }
+const brandNavBtn = document.getElementById('brand-nav-btn');
+if (brandNavBtn) {
+  brandNavBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
-window.addEventListener('scroll', updateScrollButton, { passive: true });
-
-// =========================================
-// 7. Global Keyboard Shortcuts & Init
-// =========================================
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
     e.preventDefault();
-    if (cmdPalette && cmdPalette.classList.contains('open')) {
+    if (cmdModal && !cmdModal.classList.contains('hidden')) {
       closeCommandPalette();
     } else {
       openCommandPalette();
@@ -324,4 +292,3 @@ document.addEventListener('keydown', (e) => {
 });
 
 renderProjects('all');
-updateScrollButton();
