@@ -11,7 +11,7 @@ const projects = [
       'Multi-sensory web document reader adapting PDFs and scanned notes with English/Hindi OCR, OpenDyslexic fonts, Bionic Reading, and Text-to-Speech.',
     description:
       'Built to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent readers. Combines server-side PDF extraction and Tesseract OCR with real-time browser typography controls and synchronized Web Speech synthesis.',
-    stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript'],
+    stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript','pillow','CSS3','HTML5' ],
     highlights: [
       'Dual-language OCR pipeline supporting both English and Hindi scanned documents.',
       'Real-time Bionic Reading & OpenDyslexic font toggles without page reloads.',
