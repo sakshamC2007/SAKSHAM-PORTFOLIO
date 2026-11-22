@@ -259,3 +259,4 @@ document.addEventListener('keydown', (e) => {
     closeCmdModal();
   }
 });
+{ label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank') },
