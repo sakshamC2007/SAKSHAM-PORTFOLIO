@@ -45,11 +45,11 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
 }
-
 /* Sticky Navbar */
 .navbar {
   position: sticky;
