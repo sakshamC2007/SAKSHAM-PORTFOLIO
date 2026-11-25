@@ -10,7 +10,7 @@ const projects = [
     summary:
       'Multi-sensory web document reader adapting PDFs and scanned notes with English/Hindi OCR, OpenDyslexic fonts, Bionic Reading, and Text-to-Speech.',
     description:
-      'Built to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent readers. Combines server-side PDF extraction and Tesseract OCR with real-time browser typography controls and synchronized Web Speech synthesis.',
+      'Built during a 12-hour hackathon sprint to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent readers. Combines server-side PDF extraction and Tesseract OCR with real-time browser typography controls and synchronized Web Speech synthesis.',
     stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript'],
     highlights: [
       'Dual-language OCR pipeline supporting both English and Hindi scanned documents.',
@@ -19,8 +19,8 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/levelpage-demo.png',
-    liveUrl: '', https://build-just-push-arb.onrender.com,
-    repoUrl:  https://github.com/satyamkashyap08/BUILD-JUST-PUSH
+    liveUrl: 'https://build-just-push-arb.onrender.com',
+    repoUrl: 'https://github.com/satyamkashyap08/BUILD-JUST-PUSH'
   },
   {
     id: 'focusflow',
@@ -39,8 +39,8 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/focusflow-demo.png',
-    liveUrl: '', https://build-just-push-arb.onrender.com,
-    repoUrl: https://github.com/sakshamC2007/Focus-app-FocusFlow-
+    liveUrl: 'https://focus-app-focusflow.onrender.com',
+    repoUrl: 'https://github.com/sakshamC2007/Focus-app-FocusFlow-'
   },
   {
     id: 'tcs-consultant-portfolio',
@@ -59,8 +59,8 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/client-portfolio.png',
-    liveUrl: '', https://mkc-portfolio.onrender.com,
-    repoUrl: ''  // Leave '' if the client repo is private so the GitHub button hides cleanly
+    liveUrl: 'https://mkc-portfolio.onrender.com',
+    repoUrl: ''
   },
   {
     id: 'gesture-controller',
@@ -80,7 +80,7 @@ const projects = [
     mediaType: 'placeholder',
     mediaSrc: 'assets/gesture-demo.mp4',
     liveUrl: '',
-    repoUrl: 'https://github.com'
+    repoUrl: ''
   },
   {
     id: 'esp8266-telemetry',
@@ -100,7 +100,7 @@ const projects = [
     mediaType: 'placeholder',
     mediaSrc: 'assets/esp8266-setup.jpg',
     liveUrl: '',
-    repoUrl: 'https://github.com'
+    repoUrl: ''
   }
 ];
 
@@ -198,7 +198,7 @@ function openProjectModal(projectId) {
   const tagsContainer = document.getElementById('modal-tags');
   tagsContainer.innerHTML = project.stack.map(tech => `<span class="tag">${tech}</span>`).join('');
 
-  // Show Live Website button only when liveUrl is provided
+  // Show Live Website button when liveUrl is provided
   const liveLink = document.getElementById('modal-live-link');
   if (liveLink) {
     if (project.liveUrl) {
@@ -209,7 +209,7 @@ function openProjectModal(projectId) {
     }
   }
 
-  // Show GitHub Source button only when repoUrl is provided
+  // Show GitHub Source button when repoUrl is provided
   const repoLink = document.getElementById('modal-repo-link');
   if (repoLink) {
     if (project.repoUrl) {
@@ -275,7 +275,7 @@ const commands = [
   { label: 'Go to Technical Stack', shortcut: 'SEC 03', action: () => scrollToSection('#skills') },
   { label: 'Go to Contact', shortcut: 'SEC 04', action: () => scrollToSection('#contact') },
   { label: 'Copy Email Address', shortcut: 'EMAIL', action: () => copyEmail('sakshamc2707@gmail.com', document.getElementById('copy-email-hero')) },
-  { label: 'Open GitHub Profile', shortcut: 'LINK', action: () => window.open('https://github.com', '_blank', 'noopener') },
+  { label: 'Open GitHub Profile', shortcut: 'LINK', action: () => window.open('https://github.com/sakshamC2007', '_blank', 'noopener') },
   { label: 'Open LinkedIn Profile', shortcut: 'LINK', action: () => window.open('https://www.linkedin.com/in/saksham-chauhan-564a623b9', '_blank', 'noopener') }
 ];
 
