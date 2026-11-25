@@ -35,6 +35,8 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 .bg-dots {
@@ -841,11 +843,6 @@ h2 {
 }
 
 .modal-footer {
-  <div class="modal-footer">
-        <a id="modal-live-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary hidden">Live Website ↗</a>
-        <a id="modal-repo-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Source on GitHub ↗</a>
-        <button id="close-modal-secondary" class="btn btn-ghost">Close</button>
-      </div>
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
