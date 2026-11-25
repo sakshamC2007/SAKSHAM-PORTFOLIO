@@ -4,14 +4,14 @@
 const projects = [
   {
     id: 'levelpage',
-    title: 'LevelPage',
+    title: 'LevelPage (AccessAble AI)',
     category: 'web',
-    categoryLabel: 'Web & Accessibility',
+    categoryLabel: 'Web & Apps',
     summary:
       'Multi-sensory web document reader adapting PDFs and scanned notes with English/Hindi OCR, OpenDyslexic fonts, Bionic Reading, and Text-to-Speech.',
     description:
       'Built to make dense academic PDFs and scanned handwritten notes accessible for neurodivergent readers. Combines server-side PDF extraction and Tesseract OCR with real-time browser typography controls and synchronized Web Speech synthesis.',
-    stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript','Pillow','CSS3','HTML5' ],
+    stack: ['Python', 'Flask', 'PyMuPDF', 'Tesseract OCR', 'JavaScript'],
     highlights: [
       'Dual-language OCR pipeline supporting both English and Hindi scanned documents.',
       'Real-time Bionic Reading & OpenDyslexic font toggles without page reloads.',
@@ -19,7 +19,48 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/levelpage-demo.png',
+    liveUrl: '', // Paste your Render URL here when ready (e.g. 'https://levelpage.onrender.com')
     repoUrl: 'https://github.com'
+  },
+  {
+    id: 'focusflow',
+    title: 'FocusFlow — Botanical Focus & Task Timer',
+    category: 'web',
+    categoryLabel: 'Web & Apps',
+    summary:
+      'Botanical-themed focus timer, task planner, and session analytics web app featuring animated SVG lifecycle visuals and ambient soundscapes.',
+    description:
+      'Designed and built a distraction-free productivity suite combining Pomodoro intervals, task tracking, and daily focus statistics. Features custom caterpillar-to-butterfly SVG animations, ambient audio controls, and clean per-user local storage without pre-populated clutter.',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'SVG Animation', 'Web Audio'],
+    highlights: [
+      'Interactive focus timer paired with custom caterpillar-to-butterfly lifecycle SVG transitions.',
+      'Zero-clutter initial state with isolated client-side session stats and task persistence.',
+      'Modular vanilla JS architecture with built-in ambient soundscape toggles.'
+    ],
+    mediaType: 'placeholder',
+    mediaSrc: 'assets/focusflow-demo.png',
+    liveUrl: '', // Paste your FocusFlow URL here when ready
+    repoUrl: 'https://github.com'
+  },
+  {
+    id: 'tcs-consultant-portfolio',
+    title: 'Engineering Consultant Portfolio (TCS)',
+    category: 'web',
+    categoryLabel: 'Web & Apps',
+    summary:
+      'Custom responsive portfolio web application designed and delivered for a Senior Engineering Consultant at Tata Consultancy Services.',
+    description:
+      'End-to-end client web build translating enterprise engineering experience, domain expertise, and technical leadership into a fast, responsive, and search-ready personal brand website.',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'Responsive UI', 'SEO'],
+    highlights: [
+      'Structured executive case studies and domain highlights tailored for enterprise consulting.',
+      'Clean mobile-first layout with fast load times and zero heavy framework overhead.',
+      'Delivered complete frontend build alongside aligned professional profile copy.'
+    ],
+    mediaType: 'placeholder',
+    mediaSrc: 'assets/client-portfolio.png',
+    liveUrl: '', // Paste the client's live URL here (or leave '' if private)
+    repoUrl: ''  // Leave '' if the client repo is private so the GitHub button hides cleanly
   },
   {
     id: 'gesture-controller',
@@ -38,6 +79,7 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/gesture-demo.mp4',
+    liveUrl: '',
     repoUrl: 'https://github.com'
   },
   {
@@ -57,6 +99,7 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/esp8266-setup.jpg',
+    liveUrl: '',
     repoUrl: 'https://github.com'
   }
 ];
@@ -155,8 +198,27 @@ function openProjectModal(projectId) {
   const tagsContainer = document.getElementById('modal-tags');
   tagsContainer.innerHTML = project.stack.map(tech => `<span class="tag">${tech}</span>`).join('');
 
+  // Show Live Website button only when liveUrl is provided
+  const liveLink = document.getElementById('modal-live-link');
+  if (liveLink) {
+    if (project.liveUrl) {
+      liveLink.href = project.liveUrl;
+      liveLink.classList.remove('hidden');
+    } else {
+      liveLink.classList.add('hidden');
+    }
+  }
+
+  // Show GitHub Source button only when repoUrl is provided
   const repoLink = document.getElementById('modal-repo-link');
-  repoLink.href = project.repoUrl;
+  if (repoLink) {
+    if (project.repoUrl) {
+      repoLink.href = project.repoUrl;
+      repoLink.classList.remove('hidden');
+    } else {
+      repoLink.classList.add('hidden');
+    }
+  }
 
   projectModal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
