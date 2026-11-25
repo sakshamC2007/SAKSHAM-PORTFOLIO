@@ -19,8 +19,8 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/levelpage-demo.png',
-    liveUrl: '', https://focus-app-focusflow.onrender.com
-    repoUrl: 'https://github.com'
+    liveUrl: '', https://build-just-push-arb.onrender.com,
+    repoUrl:  https://github.com/satyamkashyap08/BUILD-JUST-PUSH
   },
   {
     id: 'focusflow',
@@ -39,8 +39,8 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/focusflow-demo.png',
-    liveUrl: '', https://build-just-push-arb.onrender.com
-    repoUrl: https://github.com/satyamkashyap08/BUILD-JUST-PUSH
+    liveUrl: '', https://build-just-push-arb.onrender.com,
+    repoUrl: https://github.com/sakshamC2007/Focus-app-FocusFlow-
   },
   {
     id: 'tcs-consultant-portfolio',
@@ -59,7 +59,7 @@ const projects = [
     ],
     mediaType: 'placeholder',
     mediaSrc: 'assets/client-portfolio.png',
-    liveUrl: '', https://mkc-portfolio.onrender.com
+    liveUrl: '', https://mkc-portfolio.onrender.com,
     repoUrl: ''  // Leave '' if the client repo is private so the GitHub button hides cleanly
   },
   {
